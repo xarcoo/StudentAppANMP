@@ -4,4 +4,5 @@ import android.widget.LinearLayout
 import com.ubaya.studentapp.model.Student
 
 class StudentDetailAdapter{
+//    test
 }
