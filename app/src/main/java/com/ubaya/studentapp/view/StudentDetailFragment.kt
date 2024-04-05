@@ -1,18 +1,21 @@
 package com.ubaya.studentapp.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import com.ubaya.studentapp.R
 import com.ubaya.studentapp.databinding.FragmentStudentDetailBinding
 import com.ubaya.studentapp.viewmodel.DetailViewModel
-import com.ubaya.studentapp.viewmodel.ListViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class StudentDetailFragment : Fragment() {
     private lateinit var binding: FragmentStudentDetailBinding
@@ -42,6 +45,18 @@ class StudentDetailFragment : Fragment() {
             binding.txtName.setText(viewModel.studentLD.value?.name)
             binding.txtBOD.setText(viewModel.studentLD.value?.dob)
             binding.txtPhone.setText(viewModel.studentLD.value?.phone)
+
+            val student = it
+            binding.btnUpdate?.setOnClickListener {
+                Observable.timer(5, TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        Log.d("Messages", "Five Seconds")
+                        MainActivity.showNotification(student.name.toString(), "A new notification created", R.drawable.material_symbols__person_add)
+                    }
+
+            }
         })
     }
 }
