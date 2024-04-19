@@ -19,12 +19,11 @@ class DetailViewModel(application: Application, savedStateHandle: SavedStateHand
     val studentLD = MutableLiveData<Student>()
     val TAG = "volleyTag"
 
-//    ini belom keluar keknya
-    var id = StudentDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).studentId
+//    var id = StudentDetailFragmentArgs.fromSavedStateHandle(savedStateHandle).studentId
 
     private var queue: RequestQueue? = null
 
-    fun fetch() {
+    fun fetch(id:String) {
         queue = Volley.newRequestQueue(getApplication())
         val url = "http://adv.jitusolution.com/student.php?id=${id}"
 

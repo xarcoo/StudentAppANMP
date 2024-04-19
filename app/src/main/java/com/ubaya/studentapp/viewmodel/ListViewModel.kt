@@ -21,13 +21,6 @@ class ListViewModel(application: Application):AndroidViewModel(application) {
     private var queue:RequestQueue? = null
 
     fun refresh() {
-//        ini gadipake lagi, soalnya udah pake volley (online)
-//        studentsLD.value = arrayListOf(
-//            Student("16055","Nonie","1998/03/28","5718444778","http://dummyimage.com/75x100.jpg/cc0000/ffffff"),
-//            Student("13312","Rich","1994/12/14","3925444073","http://dummyimage.com/75x100.jpg/5fa2dd/ffffff"),
-//            Student("11204","Dinny","1994/10/07","6827808747","http://dummyimage.com/75x100.jpg/5fa2dd/ffffff1")
-//        )
-
         loadingLD.value = true
         studentLoadErrorLD.value = false
 
